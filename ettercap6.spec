@@ -7,7 +7,7 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/ettercap/%{name}-NG-%{version}.tar.gz
+Source0:	http://heanet.dl.sourceforge.net/ettercap/%{name}-NG-%{version}.tar.gz
 # Source0-md5:	96c85eb0acb3a1b28823012c146239b9
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
