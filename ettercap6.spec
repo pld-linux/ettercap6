@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO
-%doc THANKS KNOWN-BUGS PORTINGS 
+%doc THANKS KNOWN-BUGS PORTINGS
 %doc plugins/{H03_hydra1/HYDRA.HOWTO,H01_zaratan/ZARATAN.HOWTO,H09_roper/ROPER.HOWTO}
 %attr(755,root,root) %{_sbindir}/*
 %{_libdir}/ettercap
