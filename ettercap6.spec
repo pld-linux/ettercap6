@@ -15,6 +15,9 @@ Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
 Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
+BuildRequires:	awk
+BuildRequires:	textutils
+BuildRequires:	grep
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ncurses-devel
