@@ -1,5 +1,5 @@
-Summary:	ettercap is a ncurses-based sniffer/interceptor utility
-Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwytywania
+Summary:	ettercap - a ncurses-based sniffer/interceptor utility
+Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.6.b
@@ -16,11 +16,8 @@ Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	awk
-BuildRequires:	grep
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7
-BuildRequires:	textutils
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -29,17 +26,28 @@ ettercap is a network sniffer/interceptor/logger for ethernet LANs
 many protocols (even ciphered ones, like SSH and HTTPS). Data
 injection in an established connection and filtering (substitute or
 drop a packet) on the fly is also possible, keeping the connection
-sincronized. Many sniffing modes were implemented to give you a
+synchronized. Many sniffing modes were implemented to give you a
 powerful and complete sniffing suite. Plugins are supported. It has
 the ability to check whether you are in a switched LAN or not, and to
 use OS fingerprints (active or passive) to let you know the geometry
-of the LAN. The passive scan of the lan retrives infos about: hosts in
-the lan, open ports, services version, type of the host (gateway,
+of the LAN. The passive scan of the LAN retrieves infos about: hosts
+in the lan, open ports, services version, type of the host (gateway,
 router or simple host) and extimated distance in hop.
 
 %description -l pl
 ettercap jest wieloczynno¶ciowym snifferem/przechwytywaczem/loggerem
-dla sieci LAN opartych na switchach lub hubach.
+dla sieci LAN (opartych na switchach lub hubach). Obs³uguje aktywn± i
+pasywn± analizê wielu protoko³ów (nawet szyfrowanych, jak SSH czy
+HTTPS). Mo¿liwe jest tak¿e wstrzykiwanie lub filtrowanie danych
+(podmiana lub usuniêcie pakietu) w locie, przy podtrzymaniu
+synchronizacji po³±czenia. Program ma zaimplementowane wiele trybów
+sniffowania, aby daæ potê¿ne i kompletne narzêdzie. Obs³ugiwane s±
+wtyczki. Program ma mo¿liwo¶æ sprawdzania, czy pracuje w sieci ze
+switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego)
+do poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje
+informacje o: hostach w sieci, otwartych portach, wersjach us³ug,
+rodzajach hostów (bramki, routery lub zwyk³e komputery) oraz
+przybli¿onych odleg³o¶ciach (w hopach).
 
 %description -l pt_BR
 ettercap é um sniffer/interceptor/logger de rede para redes locais
@@ -66,7 +74,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 %build
 %{__aclocal}
 %{__autoconf}
-CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses"
+CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-ncurses \
