@@ -72,6 +72,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 %patch3 -p1
 
 %build
+cp -f %{_datadir}/libtool/config.sub .
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
