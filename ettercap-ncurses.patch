@@ -23,7 +23,7 @@
        ;;
     no)  AC_MSG_RESULT(no.)
 -      E_CFLAGS="-O2 -funroll-loops -fomit-frame-pointer -Wall"
-+      E_CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
++      E_CFLAGS="${CFLAGS} -fomit-frame-pointer -Wall"
        ac_cv_ec_debug=no
        ;;
  esac ],
