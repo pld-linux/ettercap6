@@ -1,6 +1,57 @@
-diff -urN ettercap-0.5.4.orig/ettercap.8 ettercap-0.5.4/ettercap.8
---- ettercap-0.5.4.orig/ettercap.8	Thu Jan  1 01:00:00 1970
-+++ ettercap-0.5.4/ettercap.8	Thu Sep  6 17:14:33 2001
+diff -uNr ettercap-0.6.3.1.orig/configure.in ettercap-0.6.3.1/configure.in
+--- ettercap-0.6.3.1.orig/configure.in	Thu Dec 13 18:05:18 2001
++++ ettercap-0.6.3.1/configure.in	Sun Feb 10 16:19:19 2002
+@@ -339,14 +339,14 @@
+ 	ncurses_warn=0
+ 	curses_warn=0
+ 
+-	AC_CHECK_HEADERS(ncurses.h,,ncurses_warn=1)
++	AC_CHECK_HEADERS(ncurses/ncurses.h,,ncurses_warn=1)
+ 	AC_CHECK_LIB(ncurses,newpad,,ncurses_warn=1)
+ 
+ 	if test $ncurses_warn -ne 1; then
+ 		AC_DEFINE(HAVE_NCURSES,1)
+ 		ac_cv_ec_ncurses=yes
+ 	else
+-		AC_CHECK_HEADERS(curses.h,,curses_warn=1)
++		AC_CHECK_HEADERS(ncurses/curses.h,,curses_warn=1)
+ 		AC_CHECK_LIB(curses,newpad,,curses_warn=1)
+ 		AC_CHECK_LIB(curses,mvwgetnstr,,curses_warn=1)
+ 
+@@ -364,7 +364,7 @@
+ 	form_warn=0
+ 
+ 	if test "$ncurses_warn$curses_warn" = "00"; then
+-		AC_CHECK_HEADERS(form.h,,form_warn=1)
++		AC_CHECK_HEADERS(ncurses/form.h,,form_warn=1)
+ 		AC_CHECK_LIB(form,form_win,,form_warn=1)
+ 
+ 		if test $form_warn -ne 1; then
+@@ -396,12 +396,12 @@
+ 		ac_cv_ec_debug=yes
+ 		;;
+ 	no)  AC_MSG_RESULT(no.)
+-		CFLAGS="-O3 -funroll-loops -fomit-frame-pointer -Wall"
++		CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
+ 		ac_cv_ec_debug=no
+ 		;;
+ esac ],
+ 	AC_MSG_RESULT(no. disabled by default.)
+-	CFLAGS="-O3 -funroll-loops -fomit-frame-pointer -Wall"
++	CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
+ 	ac_cv_ec_debug=no
+ )
+ AC_SUBST(DEBUG)
+@@ -600,4 +600,4 @@
+ echo "=================================================="
+ echo
+ 
+-EC_CHECK_DATE()
+\ No newline at end of file
++EC_CHECK_DATE()
+diff -uNr ettercap-0.6.3.1.orig/ettercap.8 ettercap-0.6.3.1/ettercap.8
+--- ettercap-0.6.3.1.orig/ettercap.8	Thu Jan  1 01:00:00 1970
++++ ettercap-0.6.3.1/ettercap.8	Sun Feb 10 16:22:15 2002
 @@ -0,0 +1,552 @@
 +.\"  ettercap -- a ncurses-based sniffer/interceptor utility for switched LAN
 +.\"
@@ -554,9 +605,9 @@ diff -urN ettercap-0.5.4.orig/ettercap.8 ettercap-0.5.4/ettercap.8
 +.PP
 ++ to report a bug, recompile ettercap with 'configure --enable-debug'
 +and attach ettercap_debug.log to the mail in which U explain the problem.
-diff -urN ettercap-0.5.4.orig/ettercap.spec ettercap-0.5.4/ettercap.spec
---- ettercap-0.5.4.orig/ettercap.spec	Thu Jan  1 01:00:00 1970
-+++ ettercap-0.5.4/ettercap.spec	Thu Sep  6 17:14:33 2001
+diff -uNr ettercap-0.6.3.1.orig/ettercap.spec ettercap-0.6.3.1/ettercap.spec
+--- ettercap-0.6.3.1.orig/ettercap.spec	Thu Jan  1 01:00:00 1970
++++ ettercap-0.6.3.1/ettercap.spec	Sun Feb 10 16:22:15 2002
 @@ -0,0 +1,40 @@
 +%define prefix /usr
 +
@@ -598,54 +649,3 @@ diff -urN ettercap-0.5.4.orig/ettercap.spec ettercap-0.5.4/ettercap.spec
 +%doc COPYING README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO THANKS KNOWN-BUGS PORTINGS
 +%{prefix}/bin/*
 +%{prefix}/share/ettercap/*
-diff -ur ettercap-0.6.2.new/configure.in ettercap-0.6.2/configure.in
---- ettercap-0.6.2.new/configure.in	Sat Nov 17 11:54:22 2001
-+++ ettercap-0.6.2/configure.in	Sat Nov 17 12:14:02 2001
-@@ -324,14 +324,14 @@
- 	curses_warn=0
- 
- 	ac_cv_ec_ncurses=no
--	AC_CHECK_HEADERS(ncurses.h,,ncurses_warn=1)
-+	AC_CHECK_HEADERS(ncurses/ncurses.h,,ncurses_warn=1)
- 	AC_CHECK_LIB(ncurses,newpad,,ncurses_warn=1)
- 
- 	if test $ncurses_warn -ne 1; then
- 		AC_DEFINE(HAVE_NCURSES,1)
- 		ac_cv_ec_ncurses=yes
- 	else
--		AC_CHECK_HEADERS(curses.h,,curses_warn=1)
-+		AC_CHECK_HEADERS(ncurses/curses.h,,curses_warn=1)
- 		AC_CHECK_LIB(curses,newpad,,curses_warn=1)
- 		AC_CHECK_LIB(curses,mvwgetnstr,,curses_warn=1)
- 
-@@ -350,7 +350,7 @@
- form_warn=0
- ac_cv_ec_form=no
- if test "$ncurses_warn$curses_warn" -eq "00"; then
--	AC_CHECK_HEADERS(form.h,,form_warn=1)
-+	AC_CHECK_HEADERS(ncurses/form.h,,form_warn=1)
- 	AC_CHECK_LIB(form,form_win,,form_warn=1)
- 
- 	if test $form_warn -ne 1; then
-@@ -380,12 +380,12 @@
- 		ac_cv_ec_debug=yes
- 		;;
- 	no)  AC_MSG_RESULT(no.)
--		CFLAGS="-O3 -funroll-loops -fomit-frame-pointer -Wall"
-+		CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
- 		ac_cv_ec_debug=no
- 		;;
- esac ],
- 	AC_MSG_RESULT(no. disabled by default.)
--	CFLAGS="-O3 -funroll-loops -fomit-frame-pointer -Wall"
-+	CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
- 	ac_cv_ec_debug=no
- )
- AC_SUBST(DEBUG)
-@@ -597,4 +597,4 @@
- echo "=================================================="
- echo
- 
--EC_CHECK_DATE()
-\ No newline at end of file
-+EC_CHECK_DATE()

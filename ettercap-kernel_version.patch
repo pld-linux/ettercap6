@@ -1,6 +1,6 @@
-diff -ur ettercap-0.6.2/aclocal.m4 ettercap-0.6.2.new/aclocal.m4
---- ettercap-0.6.2/aclocal.m4	Thu Sep 20 23:48:01 2001
-+++ ettercap-0.6.2.new/aclocal.m4	Sat Nov 17 10:51:18 2001
+diff -uNr ettercap-0.6.3.1.orig/aclocal.m4 ettercap-0.6.3.1/aclocal.m4
+--- ettercap-0.6.3.1.orig/aclocal.m4	Thu Dec 13 18:05:18 2001
++++ ettercap-0.6.3.1/aclocal.m4	Sun Feb 10 16:32:29 2002
 @@ -25,9 +25,9 @@
  AC_DEFUN(EC_LINUX_KERNEL,[
  
@@ -14,7 +14,7 @@ diff -ur ettercap-0.6.2/aclocal.m4 ettercap-0.6.2.new/aclocal.m4
     AC_MSG_RESULT($uname)
     if test "$major$minor" -lt 20; then
        AC_MSG_WARN(*******************************);
-@@ -308,4 +308,4 @@
+@@ -327,4 +327,4 @@
  		]
  	)
  
