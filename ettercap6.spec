@@ -69,7 +69,8 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
-	--enable-ncurses
+	--enable-ncurses \
+	--disable-gtk
 %{__make}
 %{__make} plug-ins
 
