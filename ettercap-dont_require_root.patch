@@ -1,0 +1,29 @@
+diff -urN ettercap-0.5.4.orig/configure.in ettercap-0.5.4/configure.in
+--- ettercap-0.5.4.orig/configure.in	Sat Jul 21 16:25:35 2001
++++ ettercap-0.5.4/configure.in	Thu Sep  6 16:34:39 2001
+@@ -158,21 +158,11 @@
+ 	dnl ===========================
+ 	dnl   Check for Socket Packet
+ 	dnl ===========================
+-		id=`id -u`
+-		AC_MSG_CHECKING(for correct UID)
+-		if test ${id} -gt 0; then
+-			AC_MSG_RESULT(${id}. not sufficient)
+-			AC_MSG_WARN(***********************************************);
+-			AC_MSG_WARN(* This configure must run with UID 0 (root)!! *);
+-			AC_MSG_WARN(***********************************************);
+-			rm -f *.cache *.log
+-			exit;
+-		else
+-			AC_MSG_RESULT($UID ok root let's go...)
+-		fi
+ 
+-		EC_PF_PACKET()
+-		EC_SOCK_PACKET()
++dnl		EC_PF_PACKET()
++dnl		EC_SOCK_PACKET()
++		AC_DEFINE(HAVE_PF_PACKET,1)
++		AC_DEFINE(HAVE_SOCK_PACKET,1)
+ 
+ 		if test "$nopf" = 1 && test "$nosock" = 1; then
+ 			AC_MSG_WARN(*************************************);
