@@ -19,7 +19,7 @@ BuildRequires:	automake
 BuildRequires:	awk
 BuildRequires:	grep
 BuildRequires:	ncurses-devel
-BuildRequires:	openssl-devel >= 0.9.6k
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	textutils
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
