@@ -4,6 +4,7 @@ Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.6.a
 Release:	1
+Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/ettercap/%{name}-%{version}.tar.gz
