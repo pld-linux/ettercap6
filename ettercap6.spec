@@ -73,7 +73,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 
 %build
 %{__aclocal}
-%{__autoconf}
+##%{__autoconf}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
