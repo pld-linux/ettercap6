@@ -12,6 +12,7 @@ Source0:	http://ettercap.sourceforge.net/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dont_require_root.patch
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
+Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -28,6 +29,7 @@ ettercap is a multipurpose sniffer/interceptor/logger for switched or
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 aclocal
