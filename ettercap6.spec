@@ -37,7 +37,7 @@ dla sieci LAN opartych na switchach lub hubach.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
