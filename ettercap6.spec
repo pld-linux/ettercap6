@@ -35,7 +35,7 @@ ettercap is a multipurpose sniffer/interceptor/logger for switched or
 aclocal
 autoconf
 %configure \
-	--{!?debug:dis}%{?debug:en}able-debug \
+	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-ncurses
 %{__make}
 %{__make} plug-ins
