@@ -9,7 +9,6 @@ License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/ettercap/%{name}-%{version}.tar.gz
 # Source0-md5:	f665cf82347a91f216184537f8f2c4bd
-Patch0:		%{name}-dont_require_root.patch
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
 Patch3:		%{name}-kernel_version.patch
@@ -19,6 +18,8 @@ BuildRequires:	automake
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fomit-frame-pointer
 
 %description
 ettercap is a network sniffer/interceptor/logger for ethernet LANs
@@ -66,19 +67,22 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 
 %prep
 %setup -q
-#%patch0 -p1
-%patch1
+%patch1 -p0
 #%patch2 -p1
 %patch3 -p1
 
 %build
 %{__aclocal}
-##%{__autoconf}
+%{__autoconf}
+%{__autoheader}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
-	--%{!?debug:dis}%{?debug:en}able-debug \
+	--enable-devel \
 	--enable-ncurses \
-	--disable-gtk
+	--disable-gtk \
+	--%{!?debug:dis}%{?debug:en}able-debug \
+	--enable-plugins \
+	--enable-https
 %{__make}
 %{__make} plug-ins
 
