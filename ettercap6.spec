@@ -18,7 +18,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7c
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 ettercap is a network sniffer/interceptor/logger for ethernet LANs
