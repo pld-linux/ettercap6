@@ -1,21 +1,23 @@
-diff -urN ettercap-0.5.4.orig/aclocal.m4 ettercap-0.5.4/aclocal.m4
---- ettercap-0.5.4.orig/aclocal.m4	Thu Jul 19 06:48:09 2001
-+++ ettercap-0.5.4/aclocal.m4	Thu Sep  6 18:39:46 2001
-@@ -25,8 +25,8 @@
+diff -ur ettercap-0.6.2/aclocal.m4 ettercap-0.6.2.new/aclocal.m4
+--- ettercap-0.6.2/aclocal.m4	Thu Sep 20 23:48:01 2001
++++ ettercap-0.6.2.new/aclocal.m4	Sat Nov 17 10:51:18 2001
+@@ -25,9 +25,9 @@
  AC_DEFUN(EC_LINUX_KERNEL,[
  
- 	AC_MSG_CHECKING(Linux kernel version)
--	major=`uname -r  | cut -f1 -d"."`
--	minor=`uname -r  | cut -f2 -d"."`
-+	major=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\"" | cut -f1 -d"."`
-+	minor=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"."`
- 	uname=`uname -r`
- 	AC_MSG_RESULT($uname)
- 	if test "$major$minor" -lt 20; then
-@@ -198,4 +198,4 @@
-     AC_MSG_RESULT($ac_cv_lbl_sockaddr_has_sa_len)
-     if test $ac_cv_lbl_sockaddr_has_sa_len = yes ; then
-             AC_DEFINE(HAVE_SOCKADDR_SA_LEN,1,[if struct sockaddr has sa_len])
--    fi])
+    AC_MSG_CHECKING(Linux kernel version)
+-   major=`uname -r  | cut -f1 -d"."`
+-   minor=`uname -r  | cut -f2 -d"."`
+-   uname=`uname -r`
++   major=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\"" | cut -f1 -d"."`
++   minor=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"."`
++   uname=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\""`
+    AC_MSG_RESULT($uname)
+    if test "$major$minor" -lt 20; then
+       AC_MSG_WARN(*******************************);
+@@ -308,4 +308,4 @@
+ 		]
+ 	)
+ 
+-])
 \ No newline at end of file
-+    fi])
++])
