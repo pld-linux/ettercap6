@@ -1,8 +1,8 @@
 Summary:	ettercap is a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwytywania
 Name:		ettercap
-Version:	0.5.4
-Release:	2
+Version:	0.6.2
+Release:	1
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
@@ -34,14 +34,15 @@ opartych na switchach lub hubach.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 
 %build
 aclocal
 autoconf
+CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-ncurses
@@ -58,15 +59,13 @@ gzip -9nf \
 	README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO \
 	THANKS KNOWN-BUGS PORTINGS
 
-install -d $RPM_BUILD_ROOT%{_libdir}
-mv -f $RPM_BUILD_ROOT{%{_datadir},%{_libdir}}/%{name}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %doc *.gz
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
 %{_libdir}/ettercap
+%{_datadir}/ettercap
 %{_mandir}/man8/*
