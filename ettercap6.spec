@@ -8,6 +8,7 @@ Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/ettercap/%{name}-%{version}.tar.gz
+# Source0-md5: 72bee584510c3bb40568188067f43e3f
 Patch0:		%{name}-dont_require_root.patch
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
