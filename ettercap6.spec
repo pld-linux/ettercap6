@@ -3,7 +3,7 @@ Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywani
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.7.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -72,10 +72,10 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 #%patch3 -p1
 
 %build
-cp -f /usr/share/automake/config.sub .
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
+#cp -f /usr/share/automake/config.sub .
+#%{__aclocal}
+#%{__autoconf}
+#%{__autoheader}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
 	--enable-devel \
