@@ -1,7 +1,7 @@
 Summary:	ettercap is a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwytywania
 Name:		ettercap
-Version:	0.6.4
+Version:	0.6.5
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
@@ -31,7 +31,7 @@ dla sieci LAN opartych na switchach lub hubach.
 %prep
 %setup -q
 #%patch0 -p1
-%patch1 -p1
+%patch1
 #%patch2 -p1
 %patch3 -p1
 
