@@ -1,4 +1,5 @@
 Summary:	ettercap is a ncurses-based sniffer/interceptor utility
+Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwytywania
 Name:		ettercap
 Version:	0.5.4
 Release:	1
@@ -23,6 +24,10 @@ Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 ettercap is a multipurpose sniffer/interceptor/logger for switched or
 "hubbed" LAN.
+
+%description -l pl
+ettercap jest wieloczynno¶ciowym snifferem/przechwytywaczem/loggerem dla sieci LAN 
+opartych na switchach lub hubach.
 
 %prep
 %setup -q
