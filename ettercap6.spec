@@ -2,13 +2,13 @@ Summary:	ettercap - a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
-Version:	0.6.b
-Release:	4
+Version:	0.7.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/ettercap/%{name}-%{version}.tar.gz
-# Source0-md5:	f665cf82347a91f216184537f8f2c4bd
+Source0:	http://dl.sourceforge.net/ettercap/%{name}-NG-%{version}.tar.gz
+# Source0-md5:	a78b914b9863668f962c9bd7b8733fc1
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
 Patch3:		%{name}-kernel_version.patch
@@ -66,10 +66,10 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 (gateway, router ou um computador) e a distância estimada no hop.
 
 %prep
-%setup -q
-%patch1 -p0
+%setup -q -n %{name}-NG-%{version}
+#%patch1 -p0
 #%patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -83,16 +83,14 @@ CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 	--disable-gtk \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-plugins \
-	--enable-https
+	--enable-https \
+	--enable-gtk
 %{__make}
-%{__make} plug-ins
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-%{__make} plug-ins_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -100,10 +98,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO
-%doc THANKS KNOWN-BUGS PORTINGS
-%doc plugins/{H03_hydra1/HYDRA.HOWTO,H01_zaratan/ZARATAN.HOWTO,H09_roper/ROPER.HOWTO}
-%attr(755,root,root) %{_sbindir}/*
+%doc README CHANGELOG AUTHORS TODO doc/*
+%doc THANKS README.BUGS
+%attr(755,root,root) %{_bindir}/*
 %{_libdir}/ettercap
 %{_datadir}/ettercap
 %{_mandir}/man8/*
+%{_mandir}/man5/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/etter.conf
