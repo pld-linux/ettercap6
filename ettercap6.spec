@@ -3,7 +3,7 @@ Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwyt
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.6.b
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
