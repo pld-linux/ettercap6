@@ -2,17 +2,19 @@ Summary:	ettercap is a ncurses-based sniffer/interceptor utility
 Name:		ettercap
 Version:	0.5.4
 Release:	1
-Source0:	http://ettercap.sourceforge.net/download/%{name}-%{version}.tar.gz
-Patch0:		%{name}-dont_require_root.patch
-Patch1:		%{name}-ncurses.patch
-Patch2:		%{name}-plugin_dir.patch
-URL:		http://ettercap.sourceforge.net/
 License:	GPL
 Group:		Networking/Utilities
 Group(de):	Netzwerkwesen/Werkzeuge
 Group(es):	Red/Utilitarios
 Group(pl):	Sieciowe/Narzêdzia
 Group(pt_BR):	Rede/Utilitários
+Source0:	http://ettercap.sourceforge.net/download/%{name}-%{version}.tar.gz
+Patch0:		%{name}-dont_require_root.patch
+Patch1:		%{name}-ncurses.patch
+Patch2:		%{name}-plugin_dir.patch
+URL:		http://ettercap.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -38,6 +40,7 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 %{__make} plug-ins_install DESTDIR=$RPM_BUILD_ROOT
 
@@ -53,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_mandir}/man8/*
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/ettercap
+%{_mandir}/man8/*
