@@ -14,13 +14,13 @@ Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
 Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
-BuildRequires:	awk
-BuildRequires:	textutils
-BuildRequires:	grep
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	awk
+BuildRequires:	grep
 BuildRequires:	ncurses-devel
 BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	textutils
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -77,8 +77,10 @@ CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses"
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-%{__make} plug-ins_install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+%{__make} plug-ins_install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
