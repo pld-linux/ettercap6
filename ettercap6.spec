@@ -5,10 +5,21 @@ Version:	0.6.4
 Release:	1
 License:	GPL
 Group:		Networking/Utilities
-Group(de):	Netzwerkwesen/Werkzeuge
+Group(cs):	SÌªovÈ/Utility
+Group(da):	NetvÊrks/VÊrkt¯j
+Group(de):	Netzwerkwesen/Dienstprogramme
 Group(es):	Red/Utilitarios
+Group(fr):	RÈseau/Utilitaires
+Group(is):	Net/TÛl
+Group(it):	Rete/Utility
+Group(no):	Nettverks/Verkt¯y
 Group(pl):	Sieciowe/NarzÍdzia
 Group(pt_BR):	Rede/Utilit·rios
+Group(pt):	Rede/Utilidades
+Group(ru):	Û≈‘ÿ/ı‘…Ã…‘Ÿ
+Group(sl):	Omreæni/PripomoËki
+Group(sv):	N‰tverk/Verktyg
+Group(uk):	Ì≈“≈÷¡/ı‘…Ã¶‘…
 Source0:	http://ettercap.sourceforge.net/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dont_require_root.patch
 Patch1:		%{name}-ncurses.patch
@@ -29,8 +40,8 @@ ettercap is a multipurpose sniffer/interceptor/logger for switched or
 "hubbed" LAN.
 
 %description -l pl
-ettercap jest wieloczynno∂ciowym snifferem/przechwytywaczem/loggerem dla sieci LAN 
-opartych na switchach lub hubach.
+ettercap jest wieloczynno∂ciowym snifferem/przechwytywaczem/loggerem
+dla sieci LAN opartych na switchach lub hubach.
 
 %prep
 %setup -q
