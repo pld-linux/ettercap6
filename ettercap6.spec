@@ -1,5 +1,6 @@
 Summary:	ettercap is a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap jest opartym o ncurses narzêdziem do sniffowania/przechwytywania
+Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.6.6.6
 Release:	1
@@ -21,12 +22,37 @@ BuildRequires:	openssl-devel
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-ettercap is a multipurpose sniffer/interceptor/logger for switched or
-"hubbed" LAN.
+ettercap is a network sniffer/interceptor/logger for ethernet LANs
+(both switched or not). It supports active and passive dissection of
+many protocols (even ciphered ones, like SSH and HTTPS). Data
+injection in an established connection and filtering (substitute or
+drop a packet) on the fly is also possible, keeping the connection
+sincronized. Many sniffing modes were implemented to give you a
+powerful and complete sniffing suite. Plugins are supported. It has
+the ability to check whether you are in a switched LAN or not, and to
+use OS fingerprints (active or passive) to let you know the geometry
+of the LAN. The passive scan of the lan retrives infos about: hosts in
+the lan, open ports, services version, type of the host (gateway,
+router or simple host) and extimated distance in hop.
 
 %description -l pl
 ettercap jest wieloczynno¶ciowym snifferem/przechwytywaczem/loggerem
 dla sieci LAN opartych na switchach lub hubach.
+
+%description -l pt_BR
+ettercap é um sniffer/interceptor/logger de rede para redes locais
+(com uso de switches ou não). Suporta operações ativas e passivas de
+vários protocolos (mesmo os criptografados, como SSH e HTTPS). Também
+é possível injeção de dados em uma conexão estabelecida e filtragem
+(substituição ou descarte de um pacote) em tempo real mantendo a
+conexão sincronizada. Muitos modos de sniffing foram implementadas
+para proporcionar a você um completo conjunto de sniffing. Plugins são
+suportados. Tem a habilidade de verificar se você está em uma rede
+local com switches ou não. Utiliza fingerprints do Sistema Operacional
+(ativo ou passivo) para permitir que você conheça a geometria da rede
+local. A varredura passiva da rede local obtém informações sobre:
+hosts na rede local, portas abertas, versão de serviços, tipo de host
+(gateway, router ou um computador) e a distância estimada no hop.
 
 %prep
 %setup -q
@@ -38,7 +64,7 @@ dla sieci LAN opartych na switchach lub hubach.
 %build
 aclocal
 %{__autoconf}
-CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
+CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses"
 %configure \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-ncurses
@@ -51,16 +77,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 %{__make} plug-ins_install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf \
-	README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO \
-	THANKS KNOWN-BUGS PORTINGS
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO
+%doc THANKS KNOWN-BUGS PORTINGS
 %attr(755,root,root) %{_sbindir}/*
 %{_libdir}/ettercap
 %{_datadir}/ettercap
