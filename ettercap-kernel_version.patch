@@ -7,8 +7,8 @@ diff -urN ettercap-0.5.4.orig/aclocal.m4 ettercap-0.5.4/aclocal.m4
  	AC_MSG_CHECKING(Linux kernel version)
 -	major=`uname -r  | cut -f1 -d"."`
 -	minor=`uname -r  | cut -f2 -d"."`
-+	major=`awk -v FS='[".] '/UTS_RELEASE/ { print $2; }' < /usr/include/linux/version.h`
-+	minor=`awk -v FS='[".] '/UTS_RELEASE/ { print $3; }' < /usr/include/linux/version.h`
++	major=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\"" | cut -f1 -d"."`
++	minor=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"."`
  	uname=`uname -r`
  	AC_MSG_RESULT($uname)
  	if test "$major$minor" -lt 20; then
