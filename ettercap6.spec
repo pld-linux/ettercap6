@@ -15,7 +15,7 @@ Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	ncurses-devel
+BuildRequires:	ncurses-ext-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -72,7 +72,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 %patch3 -p1
 
 %build
-cp -f %{_datadir}/libtool/config.sub .
+cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
