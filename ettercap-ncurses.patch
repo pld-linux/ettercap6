@@ -1,24 +1,24 @@
---- configure.in~	Wed Apr 24 17:39:41 2002
-+++ configure.in	Wed Apr 24 18:08:37 2002
-@@ -445,7 +445,7 @@
-    ncurses_warn=0
-    curses_warn=0
- 
--   AC_CHECK_HEADERS(ncurses.h,,ncurses_warn=1)
-+   AC_CHECK_HEADERS(ncurses/ncurses.h,,ncurses_warn=1)
+--- configure.in.orig	Wed Jun  5 07:32:08 2002
++++ configure.in	Wed Jun  5 07:33:42 2002
+@@ -444,7 +444,7 @@
+    AC_CHECK_LIB(ncurses,newpad,,ncurses_warn=1)
  
     if test $ncurses_warn -ne 1; then
-       AC_CHECK_LIB(ncurses,newpad,,ncurses_warn=2)
-@@ -454,7 +454,7 @@
+-      AC_CHECK_HEADERS(ncurses.h,,ncurses_warn=2)
++      AC_CHECK_HEADERS(ncurses/ncurses.h,,ncurses_warn=2)
+       if test $ncurses_warn -ne 2; then
+          AC_DEFINE(HAVE_NCURSES,1)
           ac_cv_ec_ncurses=yes
-       fi
-    else
--      AC_CHECK_HEADERS(curses.h,,curses_warn=1)
-+      AC_CHECK_HEADERS(ncurses/curses.h,,curses_warn=1)
+@@ -454,7 +454,7 @@
+       AC_CHECK_LIB(curses,mvwgetnstr,,curses_warn=1)
  
        if test $curses_warn -ne 1; then
-          AC_CHECK_LIB(curses,newpad,,curses_warn=2)
-@@ -575,12 +575,12 @@
+-         AC_CHECK_HEADERS(curses.h,,curses_warn=2)
++         AC_CHECK_HEADERS(ncurses/curses.h,,curses_warn=2)
+          if test $curses_warn -ne 2; then
+             AC_DEFINE(HAVE_NCURSES,1)
+             ac_cv_ec_ncurses=yes
+@@ -573,7 +573,7 @@
        ac_cv_ec_debug=yes
        ;;
     no)  AC_MSG_RESULT(no.)
@@ -27,9 +27,3 @@
        ac_cv_ec_debug=no
        ;;
  esac ],
-    AC_MSG_RESULT(no. disabled by default.)
--   E_CFLAGS="-O3 -funroll-loops -fomit-frame-pointer -Wall"
-+   E_CFLAGS="${CFLAGS} -funroll-loops -fomit-frame-pointer -Wall"
-    ac_cv_ec_debug=no
- )
- AC_SUBST(DEBUG)
