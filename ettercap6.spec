@@ -5,6 +5,7 @@ Release:	1
 Source0:	http://ettercap.sourceforge.net/download/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dont_require_root.patch
 Patch1:		%{name}-ncurses.patch
+Patch2:		%{name}-plugin_dir.patch
 URL:		http://ettercap.sourceforge.net/
 License:	GPL
 Group:		Networking/Utilities
@@ -24,13 +25,14 @@ ettercap is a multipurpose sniffer/interceptor/logger for switched or
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 aclocal
 autoconf
 %configure \
 	--disable-debug \
-	--enable-ncurses \
+	--enable-ncurses
 %{__make}
 %{__make} plug-ins
 
@@ -43,6 +45,9 @@ gzip -9nf \
 	README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO \
 	THANKS KNOWN-BUGS PORTINGS
 
+install -d $RPM_BUILD_ROOT%{_libdir}
+mv -f $RPM_BUILD_ROOT{%{_datadir},%{_libdir}}/%{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -51,4 +56,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/*
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
-%{_datadir}/ettercap/*
+%{_libdir}/ettercap
