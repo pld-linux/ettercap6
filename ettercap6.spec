@@ -62,7 +62,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 %patch3 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 CFLAGS="%{rpmcflags} -I%{_includedir}/ncurses"
 %configure \
