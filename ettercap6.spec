@@ -17,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	libnet >= 1.1.2.1
+BuildRequires:	libnet-devel >= 1.1.2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fomit-frame-pointer
