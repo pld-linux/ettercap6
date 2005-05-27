@@ -1,9 +1,12 @@
+# TODO:
+#	- make GTK work
+#
 Summary:	ettercap - a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.7.2
-Release:	3
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -18,6 +21,9 @@ BuildRequires:	automake
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	libnet-devel >= 1.1.2.1
+BuildRequires:	libltdl-devel
+BuildRequires:	libpcap-devel
+BuildRequires:	pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fomit-frame-pointer
