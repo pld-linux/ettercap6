@@ -1,5 +1,6 @@
 # TODO:
-#	- make GTK work
+#  - make GTK work
+#  - need STBR due http://security.gentoo.org/glsa/glsa-200506-07.xml
 #
 Summary:	ettercap - a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
