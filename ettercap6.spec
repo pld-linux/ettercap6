@@ -91,8 +91,7 @@ CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 	--disable-gtk \
 	--%{!?debug:dis}%{?debug:en}able-debug \
 	--enable-plugins \
-	--enable-https \
-	--enable-gtk
+	--enable-https 
 %{__make}
 
 %install
