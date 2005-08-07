@@ -1,13 +1,13 @@
-# TODO:
-#  - make GTK work
-#  - need STBR due http://security.gentoo.org/glsa/glsa-200506-07.xml
+#
+# Conditional build:
+%bcond_without	gtk		# build without gtk-based frontend (fewer dependencies)
 #
 Summary:	ettercap - a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap
 Version:	0.7.3
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
@@ -19,6 +19,7 @@ Patch3:		%{name}-kernel_version.patch
 URL:		http://ettercap.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+%{?with_gtk:BuildRequires:	gtk+2-devel}
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	libnet-devel >= 1.1.2.1
@@ -52,11 +53,11 @@ HTTPS). Mo¿liwe jest tak¿e wstrzykiwanie lub filtrowanie danych
 synchronizacji po³±czenia. Program ma zaimplementowane wiele trybów
 sniffowania, aby daæ potê¿ne i kompletne narzêdzie. Obs³ugiwane s±
 wtyczki. Program ma mo¿liwo¶æ sprawdzania, czy pracuje w sieci ze
-switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego)
-do poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje
-informacje o: hostach w sieci, otwartych portach, wersjach us³ug,
-rodzajach hostów (bramki, routery lub zwyk³e komputery) oraz
-przybli¿onych odleg³o¶ciach (w hopach).
+switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego) do
+poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje informacje
+o: hostach w sieci, otwartych portach, wersjach us³ug, rodzajach
+hostów (bramki, routery lub zwyk³e komputery) oraz przybli¿onych
+odleg³o¶ciach (w hopach).
 
 %description -l pt_BR
 ettercap é um sniffer/interceptor/logger de rede para redes locais
@@ -86,10 +87,8 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 #%{__autoheader}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
-	--enable-devel \
-	--enable-ncurses \
-	--disable-gtk \
 	--%{!?debug:dis}%{?debug:en}able-debug \
+	--%{?with_gtk:en}%{!?with_gtk:dis}able-gtk \
 	--enable-plugins \
 	--enable-https 
 %{__make}
@@ -112,4 +111,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/ettercap
 %{_mandir}/man8/*
 %{_mandir}/man5/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/etter.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/etter.conf
