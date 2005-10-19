@@ -1,31 +1,24 @@
-#
-# Conditional build:
-%bcond_without	gtk		# build without gtk-based frontend (fewer dependencies)
-#
 Summary:	ettercap - a ncurses-based sniffer/interceptor utility
 Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
 Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
-Name:		ettercap
-Version:	0.7.3
-Release:	1
+Name:		ettercap6
+Version:	0.6.b
+Release:	5
 Epoch:		1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/ettercap/%{name}-NG-%{version}.tar.gz
-# Source0-md5:	28fb15cd024162c55249888fe1b97820
+Source0:	http://dl.sourceforge.net/ettercap/ettercap-%{version}.tar.gz
+# Source0-md5:	f665cf82347a91f216184537f8f2c4bd
 Patch1:		%{name}-ncurses.patch
 Patch2:		%{name}-plugin_dir.patch
 Patch3:		%{name}-kernel_version.patch
+Patch4:		%{name}-name.patch
 URL:		http://ettercap.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_gtk:BuildRequires:	gtk+2-devel}
 BuildRequires:	ncurses-ext-devel
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	libnet-devel >= 1.1.2.1
-BuildRequires:	libltdl-devel
-BuildRequires:	libpcap-devel
-BuildRequires:	pcre-devel
+Provides:	ettercap = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags	-fomit-frame-pointer
@@ -53,11 +46,11 @@ HTTPS). Mo¿liwe jest tak¿e wstrzykiwanie lub filtrowanie danych
 synchronizacji po³±czenia. Program ma zaimplementowane wiele trybów
 sniffowania, aby daæ potê¿ne i kompletne narzêdzie. Obs³ugiwane s±
 wtyczki. Program ma mo¿liwo¶æ sprawdzania, czy pracuje w sieci ze
-switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego) do
-poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje informacje
-o: hostach w sieci, otwartych portach, wersjach us³ug, rodzajach
-hostów (bramki, routery lub zwyk³e komputery) oraz przybli¿onych
-odleg³o¶ciach (w hopach).
+switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego)
+do poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje
+informacje o: hostach w sieci, otwartych portach, wersjach us³ug,
+rodzajach hostów (bramki, routery lub zwyk³e komputery) oraz
+przybli¿onych odleg³o¶ciach (w hopach).
 
 %description -l pt_BR
 ettercap é um sniffer/interceptor/logger de rede para redes locais
@@ -75,28 +68,36 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 (gateway, router ou um computador) e a distância estimada no hop.
 
 %prep
-%setup -q -n %{name}-NG-%{version}
-#%patch1 -p0
+%setup -q -n ettercap-%{version}
+%patch1 -p0
 #%patch2 -p1
-#%patch3 -p1
+%patch3 -p1
+%patch4
 
 %build
-#cp -f /usr/share/automake/config.sub .
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
+cp -f /usr/share/automake/config.sub .
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
 CFLAGS="%{rpmcflags} -I/usr/include/ncurses"
 %configure \
+	--enable-devel \
+	--enable-ncurses \
+	--disable-gtk \
 	--%{!?debug:dis}%{?debug:en}able-debug \
-	--%{?with_gtk:en}%{!?with_gtk:dis}able-gtk \
 	--enable-plugins \
-	--enable-https 
+	--enable-https
 %{__make}
+%{__make} plug-ins
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
+mv ettercap{,6}.8
+
 %{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+%{__make} plug-ins_install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -104,11 +105,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README CHANGELOG AUTHORS TODO doc/*
-%doc THANKS README.BUGS
-%attr(755,root,root) %{_bindir}/*
-%{_libdir}/ettercap
-%{_datadir}/ettercap
+%doc README README.PLUGINS HISTORY CHANGELOG AUTHORS TODO
+%doc THANKS KNOWN-BUGS PORTINGS
+%doc plugins/{H03_hydra1/HYDRA.HOWTO,H01_zaratan/ZARATAN.HOWTO,H09_roper/ROPER.HOWTO}
+%attr(755,root,root) %{_sbindir}/*
+%{_libdir}/ettercap6
+%{_datadir}/ettercap6
 %{_mandir}/man8/*
-%{_mandir}/man5/*
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/etter.conf
