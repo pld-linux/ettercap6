@@ -1,0 +1,16 @@
+diff -uNr ettercap-0.6.3.1.orig/aclocal.m4 ettercap-0.6.3.1/aclocal.m4
+--- ettercap-0.6.3.1.orig/aclocal.m4	Thu Dec 13 18:05:18 2001
++++ ettercap-0.6.3.1/aclocal.m4	Sun Feb 10 16:32:29 2002
+@@ -25,9 +25,9 @@
+ AC_DEFUN(EC_LINUX_KERNEL,[
+ 
+    AC_MSG_CHECKING(Linux kernel version)
+-   major=`uname -r  | cut -f1 -d"."`
+-   minor=`uname -r  | cut -f2 -d"."`
+-   uname=`uname -r`
++   major=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\"" | cut -f1 -d"."`
++   minor=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"."`
++   uname=`grep UTS_RELEASE /usr/include/linux/version.h | cut -f2 -d"\""`
+    AC_MSG_RESULT($uname)
+    if test "$major$minor" -lt 20; then
+       AC_MSG_WARN(*******************************);
