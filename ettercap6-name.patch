@@ -1,0 +1,11 @@
+--- src/include/ec_main.h~	2003-07-10 10:25:32.000000000 +0200
++++ src/include/ec_main.h	2005-10-19 17:52:51.706597078 +0200
+@@ -10,7 +10,7 @@
+    #include <config.h>     // autoheader   -I.
+ #endif
+ 
+-#define PROGRAM         "ettercap"
++#define PROGRAM         "ettercap6"
+ #define AUTHORS         "ALoR & NaGA"
+ 
+ #define LOOP for(;;)
