@@ -1,6 +1,6 @@
 Summary:	ettercap - a ncurses-based sniffer/interceptor utility
-Summary(pl):	ettercap - oparte o ncurses narzêdzie do sniffowania/przechwytywania
-Summary(pt_BR):	ettercap e um interceptador/sniffer paseado em ncurses
+Summary(pl.UTF-8):   ettercap - oparte o ncurses narzÄ™dzie do sniffowania/przechwytywania
+Summary(pt_BR.UTF-8):   ettercap e um interceptador/sniffer paseado em ncurses
 Name:		ettercap6
 Version:	0.6.b
 Release:	5
@@ -37,35 +37,35 @@ of the LAN. The passive scan of the LAN retrieves infos about: hosts
 in the lan, open ports, services version, type of the host (gateway,
 router or simple host) and extimated distance in hop.
 
-%description -l pl
-ettercap jest wieloczynno¶ciowym snifferem/przechwytywaczem/loggerem
-dla sieci LAN (opartych na switchach lub hubach). Obs³uguje aktywn± i
-pasywn± analizê wielu protoko³ów (nawet szyfrowanych, jak SSH czy
-HTTPS). Mo¿liwe jest tak¿e wstrzykiwanie lub filtrowanie danych
-(podmiana lub usuniêcie pakietu) w locie, przy podtrzymaniu
-synchronizacji po³±czenia. Program ma zaimplementowane wiele trybów
-sniffowania, aby daæ potê¿ne i kompletne narzêdzie. Obs³ugiwane s±
-wtyczki. Program ma mo¿liwo¶æ sprawdzania, czy pracuje w sieci ze
-switchami oraz u¿ywania odcisków systemów (aktywnego lub pasywnego)
+%description -l pl.UTF-8
+ettercap jest wieloczynnoÅ›ciowym snifferem/przechwytywaczem/loggerem
+dla sieci LAN (opartych na switchach lub hubach). ObsÅ‚uguje aktywnÄ… i
+pasywnÄ… analizÄ™ wielu protokoÅ‚Ã³w (nawet szyfrowanych, jak SSH czy
+HTTPS). MoÅ¼liwe jest takÅ¼e wstrzykiwanie lub filtrowanie danych
+(podmiana lub usuniÄ™cie pakietu) w locie, przy podtrzymaniu
+synchronizacji poÅ‚Ä…czenia. Program ma zaimplementowane wiele trybÃ³w
+sniffowania, aby daÄ‡ potÄ™Å¼ne i kompletne narzÄ™dzie. ObsÅ‚ugiwane sÄ…
+wtyczki. Program ma moÅ¼liwoÅ›Ä‡ sprawdzania, czy pracuje w sieci ze
+switchami oraz uÅ¼ywania odciskÃ³w systemÃ³w (aktywnego lub pasywnego)
 do poznania geometrii sieci. Pasywne skanowanie sieci uzyskuje
-informacje o: hostach w sieci, otwartych portach, wersjach us³ug,
-rodzajach hostów (bramki, routery lub zwyk³e komputery) oraz
-przybli¿onych odleg³o¶ciach (w hopach).
+informacje o: hostach w sieci, otwartych portach, wersjach usÅ‚ug,
+rodzajach hostÃ³w (bramki, routery lub zwykÅ‚e komputery) oraz
+przybliÅ¼onych odlegÅ‚oÅ›ciach (w hopach).
 
-%description -l pt_BR
-ettercap é um sniffer/interceptor/logger de rede para redes locais
-(com uso de switches ou não). Suporta operações ativas e passivas de
-vários protocolos (mesmo os criptografados, como SSH e HTTPS). Também
-é possível injeção de dados em uma conexão estabelecida e filtragem
-(substituição ou descarte de um pacote) em tempo real mantendo a
-conexão sincronizada. Muitos modos de sniffing foram implementadas
-para proporcionar a você um completo conjunto de sniffing. Plugins são
-suportados. Tem a habilidade de verificar se você está em uma rede
-local com switches ou não. Utiliza fingerprints do Sistema Operacional
-(ativo ou passivo) para permitir que você conheça a geometria da rede
-local. A varredura passiva da rede local obtém informações sobre:
-hosts na rede local, portas abertas, versão de serviços, tipo de host
-(gateway, router ou um computador) e a distância estimada no hop.
+%description -l pt_BR.UTF-8
+ettercap Ã© um sniffer/interceptor/logger de rede para redes locais
+(com uso de switches ou nÃ£o). Suporta operaÃ§Ãµes ativas e passivas de
+vÃ¡rios protocolos (mesmo os criptografados, como SSH e HTTPS). TambÃ©m
+Ã© possÃ­vel injeÃ§Ã£o de dados em uma conexÃ£o estabelecida e filtragem
+(substituiÃ§Ã£o ou descarte de um pacote) em tempo real mantendo a
+conexÃ£o sincronizada. Muitos modos de sniffing foram implementadas
+para proporcionar a vocÃª um completo conjunto de sniffing. Plugins sÃ£o
+suportados. Tem a habilidade de verificar se vocÃª estÃ¡ em uma rede
+local com switches ou nÃ£o. Utiliza fingerprints do Sistema Operacional
+(ativo ou passivo) para permitir que vocÃª conheÃ§a a geometria da rede
+local. A varredura passiva da rede local obtÃ©m informaÃ§Ãµes sobre:
+hosts na rede local, portas abertas, versÃ£o de serviÃ§os, tipo de host
+(gateway, router ou um computador) e a distÃ¢ncia estimada no hop.
 
 %prep
 %setup -q -n ettercap-%{version}
