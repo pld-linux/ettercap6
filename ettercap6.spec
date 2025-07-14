@@ -69,10 +69,10 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 
 %prep
 %setup -q -n ettercap-%{version}
-%patch1 -p0
+%patch -P1 -p0
 #%patch2 -p1
-%patch3 -p1
-%patch4
+%patch -P3 -p1
+%patch -P4
 
 %build
 cp -f /usr/share/automake/config.sub .
