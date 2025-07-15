@@ -70,7 +70,7 @@ hosts na rede local, portas abertas, versão de serviços, tipo de host
 %prep
 %setup -q -n ettercap-%{version}
 %patch -P1 -p0
-#%patch2 -p1
+#%%patch2 -p1
 %patch -P3 -p1
 %patch -P4
 
